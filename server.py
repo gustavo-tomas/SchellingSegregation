@@ -38,14 +38,17 @@ happy_element = HappyElement()
 canvas_element = CanvasGrid(schelling_draw, 20, 20, 500, 500)
 happy_chart = ChartModule([{"Label": "happy", "Color": "Black"}])
 
+# muda densidade para um controle mais preciso (decimal para centesimal)
+# muda fração de minoria para um controle mais preciso (passo .05 para .01)
 model_params = {
     "height": 20,
     "width": 20,
-    "density": UserSettableParameter("slider", "Agent density", 0.8, 0.1, 1.0, 0.1),
+    "density": UserSettableParameter("slider", "Agent density", 0.8, 0.01, 1.0, 0.01),
     "minority_pc": UserSettableParameter(
-        "slider", "Fraction minority", 0.2, 0.00, 1.0, 0.05
+        "slider", "Fraction minority", 0.2, 0.00, 1.0, 0.01
     ),
     "homophily": UserSettableParameter("slider", "Homophily", 3, 0, 8, 1),
+    "max_steps": UserSettableParameter("slider", "Max Steps", 100, 1, 400, 1),
 }
 
 server = ModularServer(

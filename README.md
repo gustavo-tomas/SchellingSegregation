@@ -25,6 +25,6 @@ O programa gera dois tipos de arquivos: _agent_data_ e _model_data_. Esses arqui
 ## Conclusão
 Após realizar as simulações, é evidente que o modelo não encontra soluções quando a densidade é muito alta e/ou a quantidade mínima de vizinhos é muito elevada. Por exemplo, uma simulação com homofilia valor 7, densidade de 0.8 e fração de 0.2 percorre 400 passos, mas não encontra solução, pois a exigência de 7 vizinhos iguais é muito forte.
 
-De forma similar, apenas alterando os dados da densidade para 0.99 e homofilia para 1, a simulação percorre 400 passos e não encontra solução, mesmo com baixa homofilia. Isso ocorre porque indíviduos da minoria ficam isolados entre os da maioria e não conseguem encontrar vizinhos iguais.
+De forma similar, apenas alterando os dados da densidade para 0.99 e homofilia para 1, a simulação percorre 400 passos e não encontra solução, mesmo com baixa homofilia. Isso ocorre porque indivíduos da minoria ficam isolados entre os da maioria e não conseguem encontrar vizinhos iguais.
 
 Por fim, nota-se que a hipótese é válida. De fato, nota-se uma forte segregação e uma imensa barreira em encontrar vizinhos iguais quando a densidade é extremamente alta ou a homofilia é muito elevada.

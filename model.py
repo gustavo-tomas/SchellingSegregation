@@ -99,6 +99,8 @@ class Schelling(Model):
         if self.happy == self.schedule.get_agent_count():
             self.running = False
 
+def happy(model):
+    return model.happy
 
 def density(model):
     return model.density
@@ -139,6 +141,7 @@ def batch_run():
             "MinorityPC": minority_pc,
             "Homophily": homophily,
             "MaxSteps": max_steps,
+            "HappyAgents": happy
         },
         agent_reporters = {
             "Position": "pos",

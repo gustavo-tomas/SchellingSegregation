@@ -36,7 +36,7 @@ def schelling_draw(agent):
 
 happy_element = HappyElement()
 canvas_element = CanvasGrid(schelling_draw, 20, 20, 500, 500)
-happy_chart = ChartModule([{"Label": "happy", "Color": "Black"}])
+happy_chart = ChartModule([{"Label": "happy", "Color": "Black"}, {"Label": "steps", "Color": "Green"}])
 
 # muda densidade para um controle mais preciso (decimal para centesimal)
 # muda fração de minoria para um controle mais preciso (passo .05 para .01)

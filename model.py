@@ -57,7 +57,9 @@ class Schelling(Model):
 
         self.happy = 0
         self.datacollector = DataCollector(
-            {"happy": "happy"},  # Model-level count of happy agents
+            {
+                "happy": "happy",
+                "steps": lambda m: self.schedule.steps},  # Model-level count of happy agents
             # For testing purposes, agent's individual x and y
             {"x": lambda a: a.pos[0], "y": lambda a: a.pos[1]},
         )

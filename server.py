@@ -16,6 +16,17 @@ class HappyElement(TextElement):
     def render(self, model):
         return "Happy agents: " + str(model.happy)
 
+class IndexElement(TextElement):
+    """
+    Display a text index of the index of happy agents.
+    """
+
+    def __init__(self):
+        pass
+
+    def render(self, model):
+        return "Index of satisfaction: " + str(round(model.total_satisfaction_index, 2))
+
 
 def schelling_draw(agent):
     """
@@ -35,11 +46,17 @@ def schelling_draw(agent):
 
 
 happy_element = HappyElement()
+index_element = IndexElement()
 canvas_element = CanvasGrid(schelling_draw, 20, 20, 500, 500)
-happy_chart = ChartModule([{"Label": "happy", "Color": "Black"}, {"Label": "steps", "Color": "Green"}])
+happy_chart = ChartModule([
+    {"Label": "happy", "Color": "Black"},
+])
+index_chart = ChartModule([
+    {"Label": "total_satisfaction_index", "Color": "Green"},
+    {"Label": "red_satisfaction_index", "Color": "Red"},
+    {"Label": "blue_satisfaction_index", "Color": "Blue"},
+])
 
-# muda densidade para um controle mais preciso (decimal para centesimal)
-# muda fração de minoria para um controle mais preciso (passo .05 para .01)
 model_params = {
     "height": 20,
     "width": 20,
@@ -48,9 +65,11 @@ model_params = {
         "slider", "Fraction minority", 0.2, 0.00, 1.0, 0.01
     ),
     "homophily": UserSettableParameter("slider", "Homophily", 3, 0, 8, 1),
-    "max_steps": UserSettableParameter("slider", "Max Steps", 100, 1, 400, 1),
+    
+    # medo pode ser ajustado pela interface
+    "fear": UserSettableParameter("slider", "Fear tolerance", 0.8, 0, 1, 0.01),
 }
 
 server = ModularServer(
-    Schelling, [canvas_element, happy_element, happy_chart], "Schelling", model_params
+    Schelling, [canvas_element, happy_element, happy_chart, index_element, index_chart], "Schelling", model_params
 )

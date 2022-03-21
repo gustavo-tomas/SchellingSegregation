@@ -2,29 +2,56 @@
 Simulação do modelo de segregação de Schelling usando python MESA - Computação Experimental 2021/2
 
 ## Hipótese
-O modelo de Schelling é composto por dois grupos distintos que desejam ter um número mínimo de vizinhos iguais (Homophily). A hipótese é: a partir de certas condições (como um alto número mínimo de vizinhos e uma alta densidade de agentes), é impossível satisfazer todos os agentes.
+O modelo de Schelling é composto por dois grupos distintos que desejam ter um número mínimo de vizinhos (agentes) iguais (Homophily). Quando um agente alcança condições ideais, ele fica feliz (_happy_). A hipótese é: a partir de certas condições (como um alto número mínimo de vizinhos e uma alta densidade de agentes), é impossível (ou muito mais difícil) satisfazer todos os agentes, principalmente se a tolerância ao medo for muito baixa.
 
-## Alterações no exemplo original
-Para realizar a simulação, foi utilizado um exemplo do [modelo de schelling](https://github.com/projectmesa/mesa/tree/main/examples/schelling) oferecido pelo framework MESA. Para analisar essa hipótese, foram feitas algumas alterações nesse modelo, a saber:
+## Alterações no modelo anterior
+Para realizar a simulação, foi utilizado uma versão alternativa baseada no [modelo anterior](https://github.com/gustavo-tomas/SchellingSegregation.git). Algumas mudanças consistem na adição das variáveis dependentes `satisfaction index` e da variável `fear`. A variável medo consiste em um valor gerado para cada agente em um dado passo. Se esse valor for maior que um nível de tolerância estabelecido pelo usuário, o agente se muda, mesmo que a condição de homofilia seja satisfeita. Abaixo se encontra uma listagem das mudanças em relação ao modelo anterior:
 
-- Os controles dos parâmetros foram alterados para permitir uma maior precisão na simulação dos modelos;
-- Foi adicionado um controlador de passos máximos para limitar o tempo de simulação e evitar casos de simulação sem fim;
-- Para coletar os dados, foram criados arquivos *.csv* armazenados na pasta results.
+- Foram adicionadas as seguites variáveis dependentes:
+
+  * `fear` (no agente): o medo gerado para um agente;
+  
+  * `fear` (no modelo): a tolerância do medo suportado;
+  
+  * `total_satisfaction_index`: mede o índice de satisfação dos agentes azuis e vermelhos;
+  
+  * `blue_satisfaction_index`: mede o índice de satisfação dos agentes azuis;
+  
+  * `red_satisfaction_index`: mede o índice de satisfação dos agentes vermelhos;
+
+  * `total_blue_agents_count`: conta o número total de agentes azuis;
+
+  * `total_red_agents_count`: conta o número total de agentes vermelhos;
+
+  * `happy_blue_agents_count`: o número atual de agentes azuis felizes;
+
+  * `happy_red_agents_count`: o número atual de agentes vermelhos felizes;
+
+- Foi adicionado um controlador da tolerância ao medo `Fear tolerance`;
+
+- Foi retirada a variável `max_steps`;
+
+- Os dados obtidos com as simulações em _batch_ continuam sendo armazenados na pasta _results_ (talvez precise ser criada caso não exista ainda).
+
+Essas mudanças foram feitas, principalmente, para obter um modelo mais interessante para a simulação de um ambiente real e a variável `max_steps` foi retirada porque não produzia um efeito satisfatório sobre o modelo original. 
 
 ## Funcionamento
-Para executar as simulações, basta executar o comando `$ mesa runserver` no diretório raiz do projeto.
+Para executar as simulações, basta executar o comando `$ mesa runserver` no diretório raiz do projeto. O programa irá gerar simulações e, ao final, a interface gráfica será aberta no navegador.
 
 ## Resultados
-O programa gera dois tipos de arquivos: _agent_data_ e _model_data_. Esses arquivos contém os resultados das simulações e podem ser encontrados na pasta results. Nesses arquivos, são registradas as seguintes variáveis:
+O programa gera dois arquivos diferentes: __agent_data__ e __model_data__. Esses arquivos contém os resultados das simulações e podem ser encontrados na pasta __results__ (que deve ser criada caso ainda não exista). Nesses arquivos, são registradas diversas variáveis em nível de agente e modelo, com destaque para as seguintes:
 
-- Density - A quantidade de agentes no grid, variando de 0 a 1;
-- MinorityPC - A fração dos dois tipos de agentes, variando de 0 a 1;
-- Homophily - A quantidade mínima de vizinhos do mesmo tipo, variando de 0 a 8;
-- MaxSteps - O número máximo de passos da simulação, variando de 1 a 400.
+- `FearTolerance`: a tolerância de cada agente ao medo;
+
+- `Fear`: o medo de cada agente;
+
+- `AgentType`: o tipo de agente (0 - azul e 1 - vermelho);
+
+- `TotalSatisfactionIndex`: o índice de agentes azuis e vermelhos felizes (varia de [0, 1]);
+
+- `BlueSatisfactionIndex`: o índice de agentes azuis felizes (varia de [0, 1]);
+
+- `RedSatisfactionIndex`: o índice de agentes vermelhos felizes (varia de [0, 1]);
 
 ## Conclusão
-Após realizar as simulações, é evidente que o modelo não encontra soluções quando a densidade é muito alta e/ou a quantidade mínima de vizinhos é muito elevada. Por exemplo, uma simulação com homofilia valor 7, densidade de 0.8 e fração de 0.2 percorre 400 passos, mas não encontra solução, pois a exigência de 7 vizinhos iguais é muito forte.
-
-De forma similar, apenas alterando os dados da densidade para 0.99 e homofilia para 1, a simulação percorre 400 passos e não encontra solução, mesmo com baixa homofilia. Isso ocorre porque indivíduos da minoria ficam isolados entre os da maioria e não conseguem encontrar vizinhos iguais.
-
-Por fim, nota-se que a hipótese é válida. De fato, nota-se uma forte segregação e uma imensa barreira em encontrar vizinhos iguais quando a densidade é extremamente alta ou a homofilia é muito elevada.
+<!-- completar a conclusão -->

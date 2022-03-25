@@ -155,9 +155,9 @@ def red_satisfaction_index(model):
 def batch_run():
     # a tolerancia e fixada para testar seus efeitos no modelo, principalmente sobre a 
     # variavel total satisfaction index e blue/red satisfaction index
-    number_iterations = 10
-    max_steps_per_simulation = 300
-    fear_tolerance = 1.0
+    number_iterations = 200
+    max_steps_per_simulation = 200
+    fear_tolerance = 0.1
 
     fixed_params = {
         "height": 20,

@@ -2,7 +2,7 @@
 Simulação do modelo de segregação de Schelling usando python MESA - Computação Experimental 2021/2
 
 ## Hipótese
-O modelo de Schelling é composto por dois grupos distintos que desejam ter um número mínimo de vizinhos (agentes) iguais (Homophily). Quando um agente alcança condições ideais, ele fica feliz (_happy_). A hipótese é: a partir de certas condições (como um alto número mínimo de vizinhos e uma alta densidade de agentes), é impossível (ou muito mais difícil) satisfazer todos os agentes, principalmente se a tolerância ao medo for muito baixa.
+O modelo de Schelling é composto por dois grupos distintos que desejam ter um número mínimo de vizinhos (agentes) iguais (Homophily). Quando um agente alcança condições ideais, ele fica feliz (_happy_). A hipótese é: a partir de certas condições (como um alto número mínimo de vizinhos e uma baixa tolerância ao medo), é impossível (ou muito mais difícil) satisfazer todos os agentes.
 
 ## Alterações no modelo anterior
 Para realizar a simulação, foi utilizado uma versão alternativa baseada no [modelo anterior](https://github.com/gustavo-tomas/SchellingSegregation.git). Algumas mudanças consistem na adição das variáveis dependentes `satisfaction index` e da variável `fear`. A variável medo consiste em um valor gerado para cada agente em um dado passo. Se esse valor for maior que um nível de tolerância estabelecido pelo usuário, o agente se muda, mesmo que a condição de homofilia seja satisfeita. Abaixo se encontra uma listagem das mudanças em relação ao modelo anterior:
@@ -54,4 +54,4 @@ O programa gera dois arquivos diferentes: __agent_data__ e __model_data__. Esses
 - `RedSatisfactionIndex`: o índice de agentes vermelhos felizes (varia de [0, 1]);
 
 ## Conclusão
-<!-- completar a conclusão -->
+Por fim, são feitas algumas considerações finais acerca dos experimentos realizados e dos dados obtidos: as pessoas no mundo real sempre procuram o melhor lugar para viver e, de forma geral, é mais fácil se integrar em uma comunidade cujos interesses são similares aos seus. Isso não significa que é impossível interagir com comunidades diferentes, apenas que essas comunidades devem estar abertas a receber os outros.
